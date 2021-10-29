@@ -1,10 +1,16 @@
 package com.moringaschool.nyarangajokesapp.Adapters;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.moringaschool.nyarangajokesapp.R;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -25,12 +31,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-        return null;
+       View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.category_view, parent,false);
+
+        return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull  CategoryAdapter.ViewHolder holder, int position) {
-
+        holder.catName.setText(cats.get(position));
     }
 
     @Override
@@ -38,9 +46,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return cats.size();
     }
 
+    //reference the text view
     public class ViewHolder extends  RecyclerView.ViewHolder{
+        TextView catName;
         public ViewHolder(@NonNull  View itemView) {
             super(itemView);
+            catName = itemView.findViewById(R.id.catName);
         }
     }
 }
