@@ -7,43 +7,43 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
-import com.moringaschool.nyarangajokesapp.Adapters.CategoryAdapter;
-import com.moringaschool.nyarangajokesapp.fragments.Main;
+import com.moringaschool.nyarangajokesapp.Adapters.JokeCatAdapter;
+import com.moringaschool.nyarangajokesapp.fragments.Jokes;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView catList;
-    List<String> categories;
-    CategoryAdapter adapter;
+    RecyclerView jokeCatList,jokeList;
+    JokeCatAdapter catAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ArrayList<String> cats = new ArrayList<>();
+        cats.add("Any");
+        cats.add("Programming");
+        cats.add("Dark");
+        cats.add("Spooky");
+        cats.add("Misc");
+        cats.add("Pun");
+        cats.add("Christmas");
 
-        categories = new ArrayList<>();
+        jokeCatList = findViewById(R.id.jokeCatList);
 
-        //insert cat names
-        categories.add("Any");
-        categories.add("Programming");
-        categories.add("Misc");
-        categories.add("Dark");
-        categories.add("Pun");
-        categories.add("Spooky");
-        categories.add("Chrismas");
-
-        catList = findViewById(R.id.catList);
-        adapter = new CategoryAdapter(categories);
-
-        catList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        catList.setAdapter(adapter);
+        jokeCatList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        catAdapter = new JokeCatAdapter(cats);
+        jokeCatList.setAdapter(catAdapter);
 
         FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction().replace(R.id.fragment_container, new Main(getResources().getString(R.string.Url)+ "Any?amount=10"));
+        FragmentTransaction transaction = manager.beginTransaction().replace(R.id.fragment_frame,new Jokes("https://v2.jokeapi.dev/joke/Any?amount=10"));
         transaction.commit();
+
+
     }
+
+
+
 }
