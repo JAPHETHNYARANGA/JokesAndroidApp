@@ -6,7 +6,7 @@ This is a project that consumes the jokes api endpoints and returns values as pe
 
 ## Screenshots
 
-![App image](app/src/Assets/Screenshot_1635751066 ) 
+![App image](app/src/Assets/homescreen.png ) 
 
 
 ## Setup And Intallation
